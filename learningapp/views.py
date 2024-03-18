@@ -2,8 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from .models import Index_carousel,Skils,About,Courses,Popular_courses,Instructors,Clients
 from .forms import ContactForm
-
+from django.views.generic import UpdateView, DeleteView
+from django.urls import reverse_lazy
 # Create your views here.
+
+
+#  Base templates
 
 def index(request):
    home1 = Index_carousel.objects.all()
@@ -25,6 +29,11 @@ def index(request):
    return render(request, 'index.html', context=context)
 
 
+def error(request):
+    context = {
+        'error' : error
+    }
+    return render(request,'404.html', context=context)
 
 
 def about(request):
@@ -78,7 +87,7 @@ def contact(request):
     return render(request,'contact.html',context=context)
 
 
-
+#  Detail views
 
 def detail1(request,home1):
     home1 = get_object_or_404(Index_carousel, slug=home1)
@@ -88,7 +97,6 @@ def detail1(request,home1):
     return render(request,'detail1.html',context=context)
 
 
-
 def detail3(request,home3):
     home3 = get_object_or_404(About, slug=home3)
     context = {
@@ -96,12 +104,6 @@ def detail3(request,home3):
     }
     return render(request,'detail3.html',context=context)
 
-def detail4(request,home4):
-    home4 = get_object_or_404(Courses, slug=home4)
-    context = {
-        'home4': home4
-    }
-    return render(request,'detail4.html',context=context)
 
 def detail5(request,home5):
     home5 = get_object_or_404(Popular_courses, slug=home5)
@@ -127,8 +129,70 @@ def detail7(request,home7):
     return render(request,'detail7.html',context=context)
 
 
-def error(request):
+def detail4(request,home4):
+    home4 = get_object_or_404(Courses, slug=home4)
     context = {
-        'error' : error
+        'home4': home4
     }
-    return render(request,'404.html', context=context)
+    return render(request,'detail4.html',context=context)
+
+#  Change views
+
+class CarouselUpdateView(UpdateView):
+    model = Index_carousel
+    fields = ('__all__')
+    template_name = 'Change_templates/CarouselUpdateView.html'
+class CarouselDeleteView(DeleteView):
+    model = Index_carousel
+    template_name = 'Change_templates/CarouselDeleteView.html'
+    success_url = reverse_lazy('index')
+
+
+class AboutUpdateView(UpdateView):
+    model = About
+    fields = ('__all__')
+    template_name = 'Change_templates/AboutUpdateView.html'
+class AboutDeleteView(DeleteView):
+    model = About
+    template_name = 'Change_templates/AboutDeleteView.html'
+    success_url = reverse_lazy('index')
+
+
+class CoursesUpdateView(UpdateView):
+    model = Courses
+    fields = ('__all__')
+    template_name = 'Change_templates/CoursesUpdateView.html'
+class CoursesDeleteView(DeleteView):
+    model = Courses
+    template_name = 'Change_templates/CoursesDeleteView.html'
+    success_url = reverse_lazy('index')
+
+
+class PopularUpdateView(UpdateView):
+    model = Popular_courses
+    fields = ('__all__')
+    template_name = 'Change_templates/PopularUpdateView.html'
+class PopularDeleteView(DeleteView):
+    model = Popular_courses
+    template_name = 'Change_templates/PopularDeleteView.html'
+    success_url = reverse_lazy('index')
+
+
+class InstructorsUpdateView(UpdateView):
+    model = Instructors
+    fields = ('__all__')
+    template_name = 'Change_templates/InstructorsUpdateView.html'
+class InstructorsDeleteView(DeleteView):
+    model = Instructors
+    template_name = 'Change_templates/InstructorsDeleteView.html'
+    success_url = reverse_lazy('index')
+
+
+class ClientUpdateView(UpdateView):
+    model = Clients
+    fields = ('__all__')
+    template_name = 'Change_templates/ClientUpdateView.html'
+class ClientDeleteView(DeleteView):
+    model = Clients
+    template_name = 'Change_templates/ClientDeleteView.html'
+    success_url = reverse_lazy('index')

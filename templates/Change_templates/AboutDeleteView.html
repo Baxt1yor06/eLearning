@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Aboutni o'chirishga keldingiz</h1>
+<form method="post">{% csrf_token %}
+    {{home4.name}} shu kursni siz o'chirishni xohlaysizmi ?
+    <button type='submit'>Tasdiqlash</button>
+</form>
+{% endblock content %}
