@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from .models import Index_carousel,Skils,About,Courses,Popular_courses,Instructors,Clients
 from .forms import ContactForm
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 # Create your views here.
 
@@ -146,7 +146,10 @@ class CarouselDeleteView(DeleteView):
     model = Index_carousel
     template_name = 'Change_templates/CarouselDeleteView.html'
     success_url = reverse_lazy('index')
-
+class CarouselCreateView(CreateView):
+    model = Index_carousel
+    template_name = 'Change_templates/CarouselCreateView.html'
+    fields = "__all__"
 
 class AboutUpdateView(UpdateView):
     model = About
@@ -156,6 +159,10 @@ class AboutDeleteView(DeleteView):
     model = About
     template_name = 'Change_templates/AboutDeleteView.html'
     success_url = reverse_lazy('index')
+class AboutCreateView(CreateView):
+    model = About
+    template_name = 'Change_templates/AboutCreateView.html'
+    fields = "__all__"
 
 
 class CoursesUpdateView(UpdateView):
@@ -166,6 +173,10 @@ class CoursesDeleteView(DeleteView):
     model = Courses
     template_name = 'Change_templates/CoursesDeleteView.html'
     success_url = reverse_lazy('index')
+class CoursesCreateView(CreateView):
+    model = Courses
+    template_name = 'Change_templates/CoursesCreateView.html'
+    fields = "__all__"
 
 
 class PopularUpdateView(UpdateView):
@@ -176,6 +187,10 @@ class PopularDeleteView(DeleteView):
     model = Popular_courses
     template_name = 'Change_templates/PopularDeleteView.html'
     success_url = reverse_lazy('index')
+class PopularCreateView(CreateView):
+    model = Popular_courses
+    template_name = 'Change_templates/PopularCreateView.html'
+    fields = "__all__"
 
 
 class InstructorsUpdateView(UpdateView):
@@ -186,6 +201,10 @@ class InstructorsDeleteView(DeleteView):
     model = Instructors
     template_name = 'Change_templates/InstructorsDeleteView.html'
     success_url = reverse_lazy('index')
+class InstructorsCreateView(CreateView):
+    model = Instructors
+    template_name = 'Change_templates/InstructorsCreateView.html'
+    fields = "__all__"
 
 
 class ClientUpdateView(UpdateView):
@@ -196,3 +215,8 @@ class ClientDeleteView(DeleteView):
     model = Clients
     template_name = 'Change_templates/ClientDeleteView.html'
     success_url = reverse_lazy('index')
+class ClientCreateView(CreateView):
+    model = Clients
+    template_name = 'Change_templates/ClientCreateView.html'
+    fields = "__all__"
+

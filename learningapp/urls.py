@@ -2,7 +2,8 @@ from django.urls import path
 from .views import index, about, courses, team, testimonial, contact, error, \
     detail1, detail3, detail4, detail5, detail6, detail7, \
     CarouselDeleteView, CarouselUpdateView, AboutDeleteView, AboutUpdateView, CoursesDeleteView, CoursesUpdateView, \
-    PopularDeleteView, PopularUpdateView, InstructorsDeleteView, InstructorsUpdateView, ClientDeleteView, ClientUpdateView
+    PopularDeleteView, PopularUpdateView, InstructorsDeleteView, InstructorsUpdateView, ClientDeleteView, ClientUpdateView, \
+    CarouselCreateView, AboutCreateView, CoursesCreateView, PopularCreateView, InstructorsCreateView, ClientCreateView
 
 
 urlpatterns = [
@@ -30,16 +31,22 @@ urlpatterns = [
 
     path('home1/update/<slug>/', CarouselUpdateView.as_view(), name='CarouselUpdateView'),
     path('home1/delete/<slug>/', CarouselDeleteView.as_view(), name='CarouselDeleteView'),
+    path('home1/create/', CarouselCreateView.as_view(), name='CarouselCreateView'),
     path('home3/update/<slug>/', AboutUpdateView.as_view(), name='AboutUpdateView'),
     path('home3/delete/<slug>/', AboutDeleteView.as_view(), name='AboutDeleteView'),
+    path('home3/create/', AboutCreateView.as_view(), name='AboutCreateView'),
     path('home4/update/<slug>/', CoursesUpdateView.as_view(), name='CoursesUpdateView'),
     path('home4/delete/<slug>/', CoursesDeleteView.as_view(), name='CoursesDeleteView'),
+    path('home4/create/', CoursesCreateView.as_view(), name='CoursesCreateView'),
     path('home5/update/<slug>/', PopularUpdateView.as_view(), name='PopularUpdateView'),
     path('home5/delete/<slug>/', PopularDeleteView.as_view(), name='PopularDeleteView'),
+    path('home5/create/', PopularCreateView.as_view(), name='PopularCreateView'),
     path('home6/update/<slug>/', InstructorsUpdateView.as_view(), name='InstructorsUpdateView'),
     path('home6/delete/<slug>/', InstructorsDeleteView.as_view(), name='InstructorsDeleteView'),
+    path('home6/create/', InstructorsCreateView.as_view(), name='InstructorsCreateView'),
     path('home7/update/<slug>/', ClientUpdateView.as_view(), name='ClientUpdateView'),
     path('home7/delete/<slug>/', ClientDeleteView.as_view(), name='ClientDeleteView'),
+    path('home7/create/', ClientCreateView.as_view(), name='ClientCreateView'),
 
 
 ]
